@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Task } from "./components/Task";
 import { TaskInput } from "./components/TaskInput";
 import "./App.css";
@@ -22,13 +22,9 @@ function App() {
     readonly done: false;
   };
 
-  const [tasks, setTasks] = useState<Todo[]>([
-    {
-      id: 1,
-      text: "Feed the cat",
-      done: false,
-    },
-  ]);
+  // get data from the localStorage and set it tasks state
+  const savedData = JSON.parse(localStorage.getItem("data") || "");
+  const [tasks, setTasks] = useState<Todo[]>(savedData);
 
   const tasksList = tasks.map((task) => (
     <Task
@@ -80,8 +76,6 @@ function App() {
   }
 
   function handleCheckAll(): void {
-    // const remainingTasks = tasks.filter((task) => !task.done);
-    // setTasks(remainingTasks)
     setTasks(completeAll(tasks));
   }
 
@@ -92,6 +86,11 @@ function App() {
   function handleRemoveChecked(): void {
     setTasks(removeChecked(tasks));
   }
+
+  // save data in the localStorage
+  useEffect(() => {
+    localStorage.setItem("data", JSON.stringify(tasks));
+  }, [tasks]);
 
   return (
     <div className="App bg-zinc-900">
