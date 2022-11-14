@@ -1,3 +1,23 @@
 .App {
   text-align: center;
 }
+
+::-webkit-scrollbar {
+  width: 40px;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #404047 #27272a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #404047;
+  border-radius: 26px;
+  border: 16px solid #18181b;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #18181b;
+}
