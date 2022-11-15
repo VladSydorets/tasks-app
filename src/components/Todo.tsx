@@ -36,6 +36,7 @@ export const Todo = () => {
       index={index}
       checkTask={checkTask}
       removeTask={removeTask}
+      updateText={updateText}
     />
   ));
 
@@ -67,6 +68,20 @@ export const Todo = () => {
   function removeTask(id: number): void {
     const remainingTasks = tasks.filter((task) => task.id !== id);
     setTasks(remainingTasks);
+  }
+
+  function updateTextInTask(todo: Todo, text: string): Todo {
+    return {
+      ...todo,
+      text: text,
+    };
+  }
+
+  function updateText(id: number, text: string): void {
+    const updatedTasks = tasks.map((task) =>
+      task.id === id ? updateTextInTask(task, text) : task
+    );
+    setTasks(updatedTasks);
   }
 
   function completeAll(todos: readonly Todo[]): CompletedTodo[] {
@@ -105,7 +120,7 @@ export const Todo = () => {
 
   return (
     <div className="wrapper h-screen flex justify-center items-center">
-      <div className="container flex flex-col gap-4 w-[30rem] h-5/6 overflow-auto">
+      <div className="container flex flex-col gap-4 w-[40rem] h-5/6 overflow-auto">
         <TaskInput addTask={addTask} />
         <h2 className="text-gray-300 text-base font-medium self-start justify-self-start m-3">
           Tasks - {tasks.length}
