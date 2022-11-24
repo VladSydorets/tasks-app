@@ -11,6 +11,7 @@ export const Todo = () => {
     id: number;
     text: string;
     done: boolean;
+    date?: Date;
     tag?: Tag;
   }>;
 
@@ -28,10 +29,8 @@ export const Todo = () => {
 
   const tasksList = tasks.map((task, index) => (
     <Task
-      id={task.id}
       key={task.id}
-      text={task.text}
-      completed={task.done}
+      task={task}
       setTasks={setTasks}
       index={index}
       checkTask={checkTask}
@@ -40,12 +39,15 @@ export const Todo = () => {
     />
   ));
 
-  function addTask(value: string): void {
+  function addTask(value: string, date: Date, tag: Tag): void {
     const newTask = {
       id: tasks.length !== 0 ? tasks[tasks.length - 1].id + 1 : 0,
       text: value,
+      date: date,
+      tag: tag,
       done: false,
     };
+    console.log(newTask.id);
 
     setTasks([...tasks, newTask]);
   }
@@ -119,8 +121,8 @@ export const Todo = () => {
   }, [tasks]);
 
   return (
-    <div className="wrapper h-screen flex justify-center items-center">
-      <div className="container flex flex-col gap-4 w-[40rem] h-5/6 overflow-auto">
+    <div className="wrapper h-full flex justify-center items-center ">
+      <div className="container flex flex-col gap-4 w-[50rem] h-5/6 overflow-auto">
         <TaskInput addTask={addTask} />
         <h2 className="text-gray-300 text-base font-medium self-start justify-self-start m-3">
           Tasks - {tasks.length}
@@ -139,7 +141,7 @@ export const Todo = () => {
             )}
           </Droppable>
         </DragDropContext>
-        <div className="bottom-btns flex justify-between">
+        <div className="bottom-btns flex justify-between mb-4">
           <button className="text-gray-300 w-fit" onClick={handleCheckAll}>
             Mark all as completed
           </button>
