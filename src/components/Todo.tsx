@@ -24,7 +24,7 @@ export const Todo = () => {
   };
 
   // get data from the localStorage and set it tasks state
-  const savedData = JSON.parse(localStorage.getItem("data") || "");
+  const savedData = JSON.parse(localStorage.getItem("data") || "{}");
   const [tasks, setTasks] = useState<Todo[]>(savedData);
 
   const tasksList = tasks.map((task, index) => (
