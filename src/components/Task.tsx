@@ -83,6 +83,7 @@ export const Task = (props: TaskProps) => {
     return differenceInDays;
   }
 
+  // function to format date for display
   function formatDate(date: Date): React.ReactElement {
     const today = new Date();
     const dateTime = new Date(date);
