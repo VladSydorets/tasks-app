@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/ts-todo/static/css/main.4c1e40e7.css",
-    "main.js": "/ts-todo/static/js/main.e1134ff9.js",
-    "index.html": "/ts-todo/index.html",
-    "main.4c1e40e7.css.map": "/ts-todo/static/css/main.4c1e40e7.css.map",
-    "main.e1134ff9.js.map": "/ts-todo/static/js/main.e1134ff9.js.map"
+    "main.css": "/tasks-app/static/css/main.4c1e40e7.css",
+    "main.js": "/tasks-app/static/js/main.e1134ff9.js",
+    "index.html": "/tasks-app/index.html",
+    "main.4c1e40e7.css.map": "/tasks-app/static/css/main.4c1e40e7.css.map",
+    "main.e1134ff9.js.map": "/tasks-app/static/js/main.e1134ff9.js.map"
   },
   "entrypoints": [
     "static/css/main.4c1e40e7.css",
