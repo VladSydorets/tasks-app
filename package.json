@@ -2,11 +2,12 @@
   "name": "ts-todo-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://VladSydorets.github.io/ts-todo",
+  "homepage": "https://tasks-app-nine.vercel.app/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/gh-pages": "^3.2.1",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.3",
     "@types/react-datepicker": "^4.8.0",
