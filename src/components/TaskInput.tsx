@@ -19,20 +19,22 @@ export const TaskInput = (props: TaskInputProps) => {
 
   function handleAddTask() {
     if (textRef.current != null && tagRef.current != null) {
-      props.addTask(
-        `${textRef.current.value[0].toUpperCase()}${textRef.current.value.slice(
-          1
-        )}`,
-        date,
-        tagRef.current.value
-          ? `${tagRef.current.value[0].toUpperCase()}${tagRef.current.value.slice(
-              1
-            )}`
-          : null
-      );
-      setDate(undefined);
-      textRef.current.value = "";
-      tagRef.current.value = "";
+      if (textRef.current.value.length !== 0) {
+        props.addTask(
+          `${textRef.current.value[0].toUpperCase()}${textRef.current.value.slice(
+            1
+          )}`,
+          date,
+          tagRef.current.value
+            ? `${tagRef.current.value[0].toUpperCase()}${tagRef.current.value.slice(
+                1
+              )}`
+            : null
+        );
+        setDate(undefined);
+        textRef.current.value = "";
+        tagRef.current.value = "";
+      }
     }
   }
 
@@ -52,7 +54,6 @@ export const TaskInput = (props: TaskInputProps) => {
       <div className="date-picker w-2/12">
         <DatePicker
           selected={date}
-          // value={date}
           onChange={(date: Date) => setDate(date)}
           placeholderText={"Due date"}
           popperPlacement="bottom-end"

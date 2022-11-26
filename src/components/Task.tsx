@@ -5,12 +5,13 @@ export interface TaskProps {
   task: any;
   setTasks: any;
   index: number;
-  checkTask: (id: number) => void;
-  removeTask: (id: number) => void;
-  updateText: (id: number, text: string) => void;
+  checkTask: (id: string) => void;
+  removeTask: (id: string) => void;
+  updateText: (id: string, text: string) => void;
 }
 
 export const Task = (props: TaskProps) => {
+  console.log(props.task);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   // input ref
   const inputRef = useRef<HTMLInputElement>(null);

@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Task } from "./Task";
 import { TaskInput } from "./TaskInput";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { v4 as uuidv4 } from "uuid";
 
 export const Todo = () => {
   // Readonly Todo task type
   type Todo = Readonly<{
-    id: number;
+    id: string;
     text: string;
     done: boolean;
     date?: Date;
@@ -22,10 +23,20 @@ export const Todo = () => {
   };
 
   // get data from the localStorage and set it tasks state
-  const savedData = JSON.parse(localStorage.getItem("data") || "{}");
-  const [tasks, setTasks] = useState<Todo[]>(
-    savedData ? savedData : [{ id: 0, text: "something", done: false }]
-  );
+  // const savedData = JSON.parse(localStorage.getItem("data") || "{}");
+  // const [tasks, setTasks] = useState<Todo[]>(
+  //   savedData ? savedData : [{ id: 0, text: "something", done: false }]
+  // );
+
+  const [tasks, setTasks] = useState<Todo[]>([
+    {
+      id: uuidv4(),
+      text: "Do something",
+      done: false,
+      date: new Date(),
+      tag: "Something",
+    },
+  ]);
 
   const tasksList = tasks.map((task, index) => (
     <Task
@@ -41,7 +52,7 @@ export const Todo = () => {
 
   function addTask(value: string, date: Date, tag: string): void {
     const newTask = {
-      id: tasks.length !== 0 ? tasks[tasks.length - 1].id + 1 : 0,
+      id: uuidv4(),
       text: value,
       date: date,
       tag: tag,
@@ -59,14 +70,14 @@ export const Todo = () => {
     };
   }
 
-  function checkTask(id: number): void {
+  function checkTask(id: string): void {
     const updatedTasks = tasks.map((task) =>
       task.id === id ? toggleTodo(task) : task
     );
     setTasks(updatedTasks);
   }
 
-  function removeTask(id: number): void {
+  function removeTask(id: string): void {
     const remainingTasks = tasks.filter((task) => task.id !== id);
     setTasks(remainingTasks);
   }
@@ -78,7 +89,7 @@ export const Todo = () => {
     };
   }
 
-  function updateText(id: number, text: string): void {
+  function updateText(id: string, text: string): void {
     const updatedTasks = tasks.map((task) =>
       task.id === id ? updateTextInTask(task, text) : task
     );
