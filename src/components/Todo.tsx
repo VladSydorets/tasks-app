@@ -4,15 +4,13 @@ import { TaskInput } from "./TaskInput";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 export const Todo = () => {
-  type Tag = "home" | "work" | { custom: string };
-
   // Readonly Todo task type
   type Todo = Readonly<{
     id: number;
     text: string;
     done: boolean;
     date?: Date;
-    tag?: Tag;
+    tag?: string;
   }>;
 
   type CompletedTodo = Todo & {
@@ -25,7 +23,9 @@ export const Todo = () => {
 
   // get data from the localStorage and set it tasks state
   const savedData = JSON.parse(localStorage.getItem("data") || "{}");
-  const [tasks, setTasks] = useState<Todo[]>(savedData);
+  const [tasks, setTasks] = useState<Todo[]>(
+    savedData ? savedData : [{ id: 0, text: "something", done: false }]
+  );
 
   const tasksList = tasks.map((task, index) => (
     <Task
@@ -39,7 +39,7 @@ export const Todo = () => {
     />
   ));
 
-  function addTask(value: string, date: Date, tag: Tag): void {
+  function addTask(value: string, date: Date, tag: string): void {
     const newTask = {
       id: tasks.length !== 0 ? tasks[tasks.length - 1].id + 1 : 0,
       text: value,
@@ -47,7 +47,6 @@ export const Todo = () => {
       tag: tag,
       done: false,
     };
-    console.log(newTask.id);
 
     setTasks([...tasks, newTask]);
   }

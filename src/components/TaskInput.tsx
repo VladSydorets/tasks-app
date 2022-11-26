@@ -12,7 +12,7 @@ export const TaskInput = (props: TaskInputProps) => {
   const textRef = useRef<HTMLInputElement>(null);
   const tagRef = useRef<HTMLInputElement>(null);
 
-  const [date, setDate] = useState<Date>(new Date());
+  const [date, setDate] = useState<Date>();
 
   const inputStyling =
     "h-10 px-4 p-1 bg-zinc-900 border-2 border-zinc-800 focus:border-zinc-600 placeholder-zinc-300 text-orange-50 text-sm";
@@ -24,11 +24,13 @@ export const TaskInput = (props: TaskInputProps) => {
           1
         )}`,
         date,
-        `${tagRef.current.value[0].toUpperCase()}${tagRef.current.value.slice(
-          1
-        )}`
+        tagRef.current.value
+          ? `${tagRef.current.value[0].toUpperCase()}${tagRef.current.value.slice(
+              1
+            )}`
+          : null
       );
-
+      setDate(undefined);
       textRef.current.value = "";
       tagRef.current.value = "";
     }
@@ -50,13 +52,14 @@ export const TaskInput = (props: TaskInputProps) => {
       <div className="date-picker w-2/12">
         <DatePicker
           selected={date}
+          // value={date}
           onChange={(date: Date) => setDate(date)}
           placeholderText={"Due date"}
           popperPlacement="bottom-end"
           className={`${inputStyling} border-x-transparent w-full`}
           minDate={new Date()}
+          isClearable
           showDisabledMonthNavigation
-          fixedHeight
         />
       </div>
       <input
