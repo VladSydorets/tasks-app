@@ -1,6 +1,16 @@
-# Getting Started with Create React App
+![vladsydorets github io_tasks-app_](https://user-images.githubusercontent.com/39927384/204105588-8f76c50c-5f37-4f98-bc48-4ec3bb5ab1fc.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Tasks App
+
+Single page React tasks list application.
+
+## Technologies:
+- React -> Dependencies: react-beautiful-dnd, react-datepicker, uuid
+- TypeScript
+- Tailwind CSS
+
+## Demo:
+https://vladsydorets.github.io/tasks-app/
 
 ## Available Scripts
 
